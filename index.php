@@ -30,15 +30,16 @@ if(!$user)
   <div class="container" style="margin-top: 20px">
     <div class='page-header'>
       <h1>
-        Sentimentele postarilor tale pe Facebook - Proiect Infoiasi 2013<br/><br/>
-        <small>Proiect nr.22 : MoSoR (Mood Social Recommender)</small><br/>
-		<small>Se doreste implementarea unei aplicatii Web care sa analizeze mesajele emise pe Twitter si Facebook pentru a pune la dispozitie recomandari de resurse in functie de starea de spirit a utilizatorului --aceasta poate fi stabilita dinamic de catre utilizator sau (bonus) va putea fi detectata automat.</small>
-      <small><br/>Resurse: <a href="http://help.sentiment140.com/api"> http://help.sentiment140.com/api</a></small><br/>
+        Your sentiments generated from your latest statuses - Proiect Infoiasi 2013<br/><br/>
+        <small>Proiect no.22 : MoSoR (Mood Social Recommender)</small><br/><br/>
+		<small>ROU:  Se doreste implementarea unei aplicatii Web care sa analizeze mesajele emise pe Twitter si Facebook pentru a pune la dispozitie recomandari de resurse in functie de starea de spirit a utilizatorului --aceasta poate fi stabilita dinamic de catre utilizator sau (bonus) va putea fi detectata automat.</small><br/><br/>
+		<small>EN:  We need to implement a web app which will analyze posts on Twitter and on Facebook and suggest recommendations according to users sentiments --  this can be dynamically set by the user or (bonus) will be automatically detected.</small><br/>
+      <small><br/>Resources: <a href="http://help.sentiment140.com/api"> http://help.sentiment140.com/api</a></small><br/>
 	  </h1>
     </div>
     <div class="btn-group">
-      <a class='btn' href='status.php'>Sentimente la postarile tale (Open graph)</a>
-      <a class='btn' href='event.php'>Evenimentele la care participa prietenii tai (FQL Multiquery)</a>
+      <a class='btn' href='status.php'>Status sentiment (Open graph)</a>
+      <a class='btn' href='event.php'>Friends events (FQL Multiquery)</a>
     </div>
   </div>
 </body>
