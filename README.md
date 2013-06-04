@@ -6,7 +6,7 @@ Uses the php sdk to pull and manipulate various sets of data from Facebook
 
 Status.php
 ----------
-Does a basic open graph query to pulls your last 100 statuses also generating a sentiment
+Does a basic open graph query to pulls your last 20 statuses also generating a sentiment
 with http://help.sentiment140.com/api
 
 Event.php
