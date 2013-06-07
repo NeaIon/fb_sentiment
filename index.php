@@ -4,7 +4,20 @@
  *  INDEX.PHP
  *  
  *  Landing page of the site. Provides links to go to each feature built
- *
+ *                  Copyright (C) <2013>  <NeaIon>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 require_once 'fb/auth.php';
@@ -18,12 +31,12 @@ if(!$user)
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="assets/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <meta name="description" lang="ro" xml:lang="ro"
                content="Proiect la disciplina Tehnologii Web"/>
             <meta name="keywords" lang="ro" xml:lang="ro"
-               content="Web, WWW, technologie, informatica, facultate, universitate, proiect, programare, software, infoiasi, tw2013"/>
+               content="Web, WWW, Facebook, technologie, informatica, facultate, universitate, proiect, programare, software, infoiasi, tw2013"/>
             <meta name="author" content="Ionut Captari - http://www.neaion.ro"/> 
 </head>
 <body>
@@ -42,5 +55,13 @@ if(!$user)
       <a class='btn' href='event.php'>Friends events (FQL Multiquery)</a>
     </div>
   </div>
+  
+  <br/><br/>
+  <center>
+  <a href="http://www.gnu.org/licenses/gpl.html" target="_blank"> 
+  <img src="http://www.gnu.org/graphics/gplv3-88x31.png" border="0" />
+  </a> 
+  <center>
+  
 </body>
 </html>

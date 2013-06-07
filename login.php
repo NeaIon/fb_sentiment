@@ -33,7 +33,7 @@ if($user)
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="assets/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
   <div class='container' style='margin-top: 20px'>
@@ -46,5 +46,11 @@ if($user)
  
     <? echo "<a class='btn' href=$loginUrl>Sign In</a>"; ?>
   </div>
+  <br/><br/>
+  <center>
+  <a href="http://www.gnu.org/licenses/gpl.html" target="_blank"> 
+  <img src="http://www.gnu.org/graphics/gplv3-88x31.png" border="0" />
+  </a> 
+  <center>
 </body>
 </html>

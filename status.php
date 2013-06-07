@@ -54,7 +54,7 @@ function polaritate($url) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="assets/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
   <title>O lista cu postarile tale:</title>
 </head>
 <body>
@@ -66,19 +66,16 @@ function polaritate($url) {
       </h1>
     </div>
 	
-   <?php
-    
+<?php
     // Fetch the user's last 100 statuses
     $statuses = $facebook->api('/'.$user.'/statuses', "GET", array("limit"=>"100"));
     $statuses = $statuses["data"];
-    
-
 ?>
 	
 <h3>Latest 20 posts from your timeline:</h3>
-<pre>
 
-	<?php 
+<pre>
+<?php 
 
     for ($i = 0; $i <= 20; $i++)
 	{
@@ -87,9 +84,8 @@ function polaritate($url) {
         echo "<br/><center><h3>Message " . $i . ":</h3></center><br/>";
 		echo $text;
          echo "<br/>-----------------------------------------------<br/>";
-		
-		
-			
+		 
+		// if the text lenght is lower than 150 characters the sentiment can be conclusive	
 	    if (strlen($text) <= 150){
 		echo "<a href='http://www.sentiment140.com/api/classify?text=". urlencode($text). "'>http://www.sentiment140.com/api/classify?text=". urlencode($text). "'</a>";
 		if ($text !="") {
@@ -98,7 +94,7 @@ function polaritate($url) {
 	    echo "Has polarity ". $vari . "! This means it is:";
 	
 	    
-
+    // testing $vari = the returned polarity  and making some sugestions for the user
 	if ($vari == 4) 
             {echo "POZITIVE!<br/>";
 	         echo "<center><a href='http://www.youtube.com/watch?v=d2oQ6VbVIco'>Vizionati ceva infricosator.</a></center><br/>";
@@ -114,19 +110,24 @@ function polaritate($url) {
 	        echo "<center><a href='http://www.youtube.com/watch?v=at_f98qOGY0'>Vizionati ceva normal.</a></center><br/>";
 			echo '<center><iframe width="560" height="315" src="https://www.youtube.com/embed/at_f98qOGY0" frameborder="3" allowfullscreen></iframe></center>';
 			}
-
-//	echo "<br/><h1>--------------------------------</h1><br/>";
 	}
+	// if there is no text on the post/there is just a share of something on user's wall then the sentiment will not be generated 
     if ($text =="") { echo "<br/>Message " . $i . " is empty. No sentiment generated.<br/>"; }
 				
 	}
+	// if the text lenght is bigger than 150 characters the sentiment will not be conclusive
 	if (strlen($text) > 150){ echo "<br/>Message " . $i . " is too big. No sentiment generated.<br/>"; }
 	echo "</div>";}
 ?>
 
 </pre>
-	
-	
   </div>
+  <br/><br/>
+  <center>
+  <a class='btn' href='index.php'>Back</a><br/><br/>
+  <a href="http://www.gnu.org/licenses/gpl.html" target="_blank"> 
+  <img src="http://www.gnu.org/graphics/gplv3-88x31.png" border="0" />
+  </a> 
+  <center>
   </body>
 </html>

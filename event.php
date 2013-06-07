@@ -7,6 +7,8 @@
  *  Events are ranked by the number of friends attending.
  *                  Copyright (C) <2013>  <NeaIon>
 
+ 
+ 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -32,7 +34,7 @@ if(!$user)
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="assets/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
   <div class="container" style="margin-top: 20px">
@@ -44,15 +46,21 @@ if(!$user)
   
     <?php
 
-      // Do a batch query to grab events
+      // Do a batch query to grab events using FQL
       $multiquery = '{
-        "getFriends":"SELECT uid2 FROM friend WHERE uid1 = me()",
+        "getFriends":"SELECT uid2 FROM friend WHERE uid1 = me()", 
         "getEventIDs":"SELECT eid FROM event_member WHERE uid in (SELECT uid2 FROM #getFriends) AND rsvp_status=\'attending\' AND start_time > '.time().'",
         "getEventNames":"SELECT pic_small, eid, name FROM event WHERE eid in (SELECT eid FROM #getEventIDs)",
       }';
-      $results = $facebook->api(array('method' => 'fql.multiquery',
-                                      'queries' => $multiquery));
-
+	  
+	  // get all of user's friends
+	  //grab the event ID from event member query and we are making sure they're attending (rsvp_status)
+	  //we're getting the picture, ID and name of the event
+	  
+      $results = $facebook->api(array('method' => 'fql.multiquery', 'queries' => $multiquery));
+      //the result of the FQL Multiquery will be stored in $results. It will be an array of size 3: the elements will be the responses from the queryes
+	  
+	  
       // Populate associated arrays that map ids to names and img_urls
       $events = $results[2]['fql_result_set'];
       foreach($events as $event) {
@@ -60,21 +68,32 @@ if(!$user)
         $event_pics[$event['eid']] = $event['pic_small'];
       }
 
-      // Populate an array of event ids that friends are attending
+      // Populate an array of event ids that friends are attending 
+	  //A lot of them will be repeated if multiple friends are attending it
       $members = $results[1]['fql_result_set'];
+	  
+	  
       foreach($members as $member) {
         $event_members[] = $member['eid'];
       }
-
+      //creating a array of friends for events
+	  
       // Get the count of each element and sort to get the events most friends are attending
       $member_counts = array_count_values($event_members);
+	  
+	  //sorting high to low the values from array_count_values array
       arsort($member_counts);
-
-      // Grab the 10 events most friends are attending
+      //the highest value event will be the one user's friends are attending the most
+	  
+      // Grab the 10 events - most friends are attending
       $top_event_ids = array_slice($member_counts, 0, 10, true);
 
       // Display each event
       foreach($top_event_ids as $event_id => $count) {
+	  
+	  /* using the permalink in facebook we can display the event
+	  (a permalink is a URL that points to a specific blog or forum entry after it has passed from the front page to the archives 
+	   and remains unchanged indefinitely.) */
         echo "
           <a href='http://facebook.com/".$event_id."'>
             <div class='well'>
@@ -87,5 +106,12 @@ if(!$user)
     ?>
 
   </div>
+  <br/><br/>
+  <center>
+  <a class='btn' href='index.php'>Back</a><br/><br/>
+  <a href="http://www.gnu.org/licenses/gpl.html" target="_blank"> 
+  <img src="http://www.gnu.org/graphics/gplv3-88x31.png" border="0" />
+  </a> 
+  <center>
 </body>
 </html>
